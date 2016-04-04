@@ -61,10 +61,24 @@ public class UserRegisterServlet extends HttpServlet {
 		String Uname=US.CheckUsername(U.getUsername());
 		String Pwd=US.CheckPassword(U.getPassword());
 		String Email=US.CheckEmail(U.getEmail());
+		
+		//创建session
 		HttpSession session=request.getSession();
+		//保存注册信息格式是否正确的信息
 		session.setAttribute("Uname", Uname);
 		session.setAttribute("Pwd", Pwd);
 		session.setAttribute("Email", Email);
+		
+		//保存用户注册的信息
+		session.setAttribute("Userinformation",U);
+		/*
+		session.setAttribute("username",U.getUsername());
+		session.setAttribute("password", U.getPassword());
+		session.setAttribute("id", U.getId());
+		session.setAttribute("email", U.getEmail());
+		session.setAttribute("time", U.getTime());*/
+		
+		//判断注册信息格式正确
 		if(Uname.equals("true") && Pwd.equals("true") && Email.equals("true")){
 			//将数据插入数据库
 			UD.RegisterInformation(U.getId(),U.getUsername(),U.getPassword(),U.getLevel(),U.getEmail(),U.getTime());

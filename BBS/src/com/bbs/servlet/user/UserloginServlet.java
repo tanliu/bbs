@@ -53,6 +53,7 @@ public class UserloginServlet extends HttpServlet {
 			if(check){
 				response.sendRedirect("success.jsp");//跳转至主页面
 			}else {
+				//登录失败  调回登录界面
 				response.setHeader("refresh","2;url=login.jsp");
 			}
 		}
