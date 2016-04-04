@@ -15,6 +15,7 @@
     <servlet-name>UserServlet</servlet-name>
     <servlet-class>com.bbs.servlet.user.UserServlet</servlet-class>
   </servlet>
+
     <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
@@ -26,6 +27,14 @@
     <servlet-class>com.bbs.servlet.user.UserRegisterServlet</servlet-class>
   </servlet>
 
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ManagerBlogServlet</servlet-name>
+    <servlet-class>com.bbs.servlet.blog.ManagerBlogServlet</servlet-class>
+  </servlet>
+
+
 
   <servlet-mapping>
     <servlet-name>TestServlet</servlet-name>
@@ -35,6 +44,7 @@
     <servlet-name>UserServlet</servlet-name>
     <url-pattern>/UserServlet</url-pattern>
   </servlet-mapping>
+
     <servlet-mapping>
     <servlet-name>UserloginServlet</servlet-name>
     <url-pattern>/UserloginServlet</url-pattern>
@@ -43,6 +53,11 @@
     <servlet-name>UserRegisterServlet</servlet-name>
     <url-pattern>/UserRegisterServlet</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ManagerBlogServlet</servlet-name>
+    <url-pattern>/ManagerBlogServlet</url-pattern>
+  </servlet-mapping>
+
 
 
 </web-app>
