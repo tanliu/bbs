@@ -2,6 +2,7 @@ package com.bbs.servlet.user;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.bbs.services.user.registercheck;
+import com.bbs.dao.user.UserDao;
+import com.bbs.entity.user.User;
+import com.bbs.services.user.UserServices;
 
 public class UserRegisterServlet extends HttpServlet {
 
@@ -43,32 +46,29 @@ public class UserRegisterServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		response.setContentType("text/html;charset=utf-8");
-		/*PrintWriter out = response.getWriter();
-		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
-		out.println("<HTML>");
-		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
-		out.println("  <BODY>");
-		out.print("    This is ");
-		out.print(this.getClass());
-		out.println(", using the POST method");
-		out.println("  </BODY>");
-		out.println("</HTML>");
-		out.flush();
-		out.close();*/
+		UserDao UD=new UserDao();
 		String username=request.getParameter("username");
 		String password=request.getParameter("password");
 		String email=request.getParameter("email");
-		registercheck rc=new registercheck();
-		String Uname=rc.checkusername(username);
-		String Pwd=rc.checkpassword(password);
-		String Email=rc.checkemail(email);
+		Date time = new Date();
+		 User U=new User();
+		 U.setUsername(username);
+		 U.setPassword(password);
+		 U.setEmail(email);
+		 U.setLevel(0);
+		 U.setTime(time);
+		UserServices US=new UserServices();
+		String Uname=US.CheckUsername(U.getUsername());
+		String Pwd=US.CheckPassword(U.getPassword());
+		String Email=US.CheckEmail(U.getEmail());
 		HttpSession session=request.getSession();
 		session.setAttribute("Uname", Uname);
 		session.setAttribute("Pwd", Pwd);
 		session.setAttribute("Email", Email);
 		if(Uname.equals("true") && Pwd.equals("true") && Email.equals("true")){
 			//将数据插入数据库
-			response.sendRedirect("");
+			UD.RegisterInformation(U.getId(),U.getUsername(),U.getPassword(),U.getLevel(),U.getEmail(),U.getTime());
+			response.sendRedirect("login.jsp");
 		}else{
 			response.sendRedirect("register.jsp");
 		}

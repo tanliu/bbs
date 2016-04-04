@@ -24,7 +24,7 @@ public class PageUtils<T> {
 	
 	//-------------------------getter&&setter-------------------------	
 	public int getTotalPage() {
-		if(totalCount!=0&&pageSize==0){
+		if(totalCount!=0&&pageSize!=0){
 			totalPage=(totalCount%pageSize==0)?(totalCount/pageSize):(totalCount/pageSize+1); //¼ÆËã×ÜÒ³Êý
 		}
 		

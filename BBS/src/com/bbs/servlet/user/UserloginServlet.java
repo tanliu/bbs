@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bbs.dao.user.UserDao;
+import com.bbs.entity.user.User;
 
 public class UserloginServlet extends HttpServlet {
 
@@ -41,22 +42,18 @@ public class UserloginServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		 UserDao UD=new UserDao();
+		    UserDao UD=new UserDao();
+		    User U=new User();
 			response.setContentType("text/html;charset=utf-8");
 			String username=request.getParameter("username");
 			String password=request.getParameter("password");
-			boolean check=UD.checklogin(username,password);
+			U.setUsername(username);
+			U.setPassword(password);
+			boolean check=UD.CheckLogin(U.getUsername(),U.getPassword());
 			if(check){
-				response.sendRedirect("");//跳转至主页面
+				response.sendRedirect("success.jsp");//跳转至主页面
 			}else {
-				PrintWriter out = response.getWriter();
-				out.println("<HTML>");
-				out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
-				out.println("  <BODY>");
-				out.print("登录失败，将自动跳转回登录界面！ ");
 				response.setHeader("refresh","2;url=login.jsp");
-				out.println("  </BODY>");
-				out.println("</HTML>");
 			}
 		}
 

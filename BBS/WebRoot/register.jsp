@@ -34,11 +34,11 @@ if(session.getAttribute("Email")==null){
   %>
     <form name="login" action="UserRegisterServlet" method="post">
      <h2>BBS用户注册</h2>
-       <p>  用户名:<input name="username" type="text" style="height:30px;width:300px"> <% if(!session.getAttribute("Uname").equals("true")) out.print("yonghumingbunengweikong");%><br/>
+       <p>用户名:<input name="username" type="text" style="height:30px;width:300px">  &nbsp;&nbsp;<% if(!session.getAttribute("Uname").equals("true")) out.print("用户名不能为空");%><br/>
            <br/>
-           密&nbsp;&nbsp;码:<input name="password" type="password" style="height:30px;width:300px" ><% if(!session.getAttribute("Pwd").equals("true")) out.print("mimabunengweikong");%><br/>
+           密&nbsp;&nbsp;码:<input name="password" type="password" style="height:30px;width:300px" >  &nbsp;&nbsp;<% if(!session.getAttribute("Pwd").equals("true")) out.print("密码不能为空");%><br/>
            <br/>
-         邮&nbsp;&nbsp;箱:<input name="email" type="text" style="height:30px;width:300px" ><% if(!session.getAttribute("Email").equals("true")) out.print("youxianggeshibuzhengque");%><br/>
+         邮&nbsp;&nbsp;箱:<input name="email" type="text" style="height:30px;width:300px" >  &nbsp;&nbsp;<% if(!session.getAttribute("Email").equals("true")) out.print("邮箱格式不正确");%><br/>
            <br/>
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="注册" style="  background:green;color:white;width: 100px; height: 30px;border:0; font-size:19px" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <input type="reset" value="取消" style="  background:green;color:white;width: 100px; height: 30px;border:0; font-size:19px" ></p>
